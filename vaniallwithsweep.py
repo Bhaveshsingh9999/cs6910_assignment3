@@ -338,11 +338,7 @@ def train_setup(encoder, decoder, train_iter_params,parameters):
 
     
     
- #   input_tensor_list=creatensorlist_x(train_dataset,inputword_list,parameters['batch_size'],input_word_dict)
-#     output_tensor_list=creatensorlist_y(train_dataset,outputword_list,train_iter_params['batch_size'],output_word_dict)
-#     valid_iptensor_list=creatensorlist_x(valid_dataset,valid_input_list,train_iter_params['batch_size'],input_word_dict)
-    
-    
+
     train_batch_input = batchcreation(input_tensor_list, train_iter_params['batch_size'])
     train_batch_target = batchcreation(output_tensor_list, train_iter_params['batch_size'])
     valid_batch_input = batchcreation(valid_iptensor_list, train_iter_params['batch_size'])
@@ -351,8 +347,7 @@ def train_setup(encoder, decoder, train_iter_params,parameters):
    
         
     for count in range(train_iter_params['epochs']):
-        #print("Epoch ", count ," started ", datetime.now())
-        print('epoch count is ',count+1 ,'time' ,datetime.now())
+        print('epoch count is ',count+1 )
         for i in range(no_of_batches):
             loss = train(train_batch_input[i], train_batch_target[i], encoder,
                          decoder, encoder_optimizer, decoder_optimizer, criterion,train_iter_params)
@@ -363,8 +358,7 @@ def train_setup(encoder, decoder, train_iter_params,parameters):
         avg_loss = Total_loss/no_of_datapoints
         Total_loss = 0
         print("Average loss after ", count+1, "epochs is ", avg_loss)
-#        train_accuracy = cal_Accuracy(train_batch_input, train_output, cell_type, len(train_input), batch_size)
-#         print("Train accuracy is ", train_accuracy)
+
 
         valid_output_list = valid_dataset.iloc[:,1]
         valid_accuracy = cal_Accuracy(valid_batch_input, valid_output_list, train_iter_params['cell_type'], train_iter_params['batch_size'],encoder,decoder)
@@ -434,13 +428,13 @@ def cal_Accuracy(input, actual_output, cell_type, batch_size,encoder1,decoder1):
                 
                 
               
-    #print('no of correct output =',correct_output/n *100)
+    
     
     return correct_output/no_of_datapoints *100
 
 
 
-
+#uncomment this to run single time 
 
 # paramet= {
 
@@ -554,6 +548,8 @@ sweep_config = {
         }
     }
 }
+
+#for running sweep
 
 sweep_id = wandb.sweep(sweep_config, entity="singhbhavesh999", project="DLSeqtoseq")
 wandb.agent(sweep_id, runSweep, count = 100)
