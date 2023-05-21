@@ -28,6 +28,9 @@ now for the best configuration obtained we apply this model on test dataset and 
 similar process is done for the model with attention but instead of looking at the whole encoded input at once it priority are given to letters with higher attention 
 weights in the decoder , so this help in improving the accuracy of translation when it comes to words that sound similar and for vowels .
 
+If you want to run sweep then uncomment line number 580 and 843-887
+
+
 
 
 
