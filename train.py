@@ -839,29 +839,6 @@ def main_fn(param_run_args):
 
 main_fn(param_run_args)
 
-
-
-
-
-# #to see on test dataset 
-# test_inputword_list=getlistofwords_x(test_dataset)
-# testinput_tensor_list=[]
-
-# for i in range(len(test_inputword_list)):
-#     if(attention == False and i%paramet['batch_size']==0 ):
-#         max_length_x=getlength_x(test_dataset[i:i+paramet['batch_size']])
-#     elif(attention == True):
-#         max_length_x=max_input_length
-
-#     testinputwordtensor =tensorsFormation(test_inputword_list[i],max_length_x,input_word_dict)
-#     testinput_tensor_list.append(testinputwordtensor)
-
-# test_batch_input = batchcreation(testinput_tensor_list, paramet['batch_size'])
-# test_output_list= getlistofwords_y(test_dataset)
-# list_word_predicted,test_accuracy = cal_Accuracy_test(test_batch_input, test_output_list, paramet['cell_type'], paramet['batch_size'],encodertest,decodertest)
-# print(test_accuracy)
-# #39.1357421875
-
 #this is to run sweep 
 # def runsweep():
 #     config = None
